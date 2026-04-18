@@ -1,6 +1,7 @@
 // Landing page styles (BEM-organized partials).
 // Loaded via `stylesheet_link_tag "landing"` from app/views/landing/index.html.erb.
 
+@use "landing/fonts";
 @use "landing/base";
 @use "landing/rsvp_form";
 

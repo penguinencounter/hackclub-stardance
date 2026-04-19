@@ -5,7 +5,7 @@
     <p class="hero__subhead">The largest STEM challenge of the summer: make anything you want and win free prizes.</p>
 
     <div class="rsvp-form">
-      <%= form_with url: submit_email_path, method: :post, local: true do |form| %>
+      <%= form_with url: rsvps_path, scope: :rsvp, method: :post, local: true do |form| %>
         <div class="rsvp-form__row">
           <%= image_tag image_url("landing/hero/doodle-arrow.png"), class: "hero__doodle-arrow", alt: "" %>
           <div class="input-red">

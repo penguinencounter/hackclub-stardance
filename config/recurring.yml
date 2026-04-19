@@ -26,11 +26,11 @@ production:
     concurrency: 1
     description: "Full sync of pre-signup leads to Airtable"
 
-  # sync_rsvp_to_airtable:
-  #   class: Airtable::RsvpSyncJob
-  #   schedule: every minute
-  #   concurrency: 1
-  #   description: "Sync RSVPs to Airtable every minute with single execution limit"
+  sync_rsvp_to_airtable:
+    class: Airtable::RsvpSyncJob
+    schedule: every minute
+    concurrency: 1
+    description: "Sync RSVPs to Airtable every minute with single execution limit"
 
   sync_devlog_to_airtable:
     class: Airtable::DevlogSyncJob

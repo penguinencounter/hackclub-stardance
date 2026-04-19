@@ -49,7 +49,6 @@ Rails.application.routes.draw do
   get "og/:page", to: "og_images#show", as: :og_image, defaults: { format: :png }
   # Landing
   root "landing#index"
-  post "submit_email", to: "landing#submit_email", as: :submit_email
   # get "marketing", to: "landing#marketing"
   get "login", to: redirect("/?login=1")
 
@@ -436,4 +435,6 @@ Rails.application.routes.draw do
       get :stats
     end
   end
+
+  get "/:ref", to: "landing#index", constraints: { ref: /[a-z0-9][a-z0-9_-]{0,63}/ }
 end

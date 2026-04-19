@@ -5,7 +5,7 @@
 
   <div class="cta-section__form">
     <div class="rsvp-form">
-      <%= form_with url: submit_email_path, method: :post, local: true do |form| %>
+      <%= form_with url: rsvps_path, scope: :rsvp, method: :post, local: true do |form| %>
         <div class="rsvp-form__row">
           <div class="input-red">
             <div>

@@ -30,7 +30,6 @@ class Projects::ShipsController < ApplicationController
     end
 
     if initial_ship?
-      ShipCertWebhookJob.perform_later(ship_event_id: @post.postable.id, type: "initial")
       redirect_to @project, notice: "Congratulations! Your project has been submitted for review!"
     else
       @post.postable.update!(certification_status: "approved")

@@ -338,96 +338,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def resend_webhook
-    @project = Project.find(params[:id])
-    authorize @project
-
-    PaperTrail.request(whodunnit: current_user.id) do
-      begin
-        success = ShipCertService.ship_to_dash(@project, type: "resend")
-
-        PaperTrail::Version.create!(
-          item_type: "Project",
-          item_id: @project.id,
-          event: "resend_webhook",
-          whodunnit: current_user.id,
-          object_changes: {
-            admin_action: [ nil, "resend_webhook" ],
-            triggered_by_id: [ nil, current_user.id ],
-            success: [ nil, success ]
-          }
-        )
-
-        if success
-          render json: { message: "Webhook resent successfully" }, status: :ok
-        else
-          render json: { message: "Failed to resend webhook" }, status: :unprocessable_entity
-        end
-      rescue => e
-        render json: { message: "Webhook failed: #{e.message}" }, status: :unprocessable_entity
-      end
-    end
-  end
-
-  def confirm_recertification
-    @project = Project.find(params[:id])
-    authorize @project
-
-    unless Flipper.enabled?(:shipping)
-      redirect_to @project, alert: "Shipping is currently disabled." and return
-    end
-
-    ship_event = ShipCertService.latest_ship_event(@project)
-
-    unless ship_event&.certification_status == "rejected"
-      flash[:alert] = "Re-certification can only be requested for rejected ships."
-      redirect_to @project and return
-    end
-
-    render :confirm_recertification
-  end
-
-  def request_recertification
-    @project = Project.find(params[:id])
-    authorize @project
-
-    unless Flipper.enabled?(:shipping)
-      redirect_to @project, alert: "Shipping is currently disabled." and return
-    end
-
-    @project.with_lock do
-      ship_event = ShipCertService.latest_ship_event(@project)
-
-      unless ship_event&.certification_status == "rejected"
-        flash[:alert] = "Re-certification can only be requested for rejected ships."
-        redirect_to @project and return
-      end
-
-      PaperTrail.request(whodunnit: current_user.id) do
-        ShipCertService.ship_to_dash(@project, type: "recertification")
-        ship_event.update!(certification_status: "pending")
-
-        PaperTrail::Version.create!(
-          item_type: "Project",
-          item_id: @project.id,
-          event: "request_recertification",
-          whodunnit: current_user.id,
-          object_changes: {
-            user_action: [ nil, "request_recertification" ],
-            triggered_by_id: [ nil, current_user.id ]
-          }
-        )
-
-        flash[:notice] = "Re-certification requested! Your project has been resubmitted for review."
-      end
-    end
-
-    redirect_to @project
-  rescue => e
-    Rails.logger.error "Failed to request recertification for project #{@project.id}: #{e.message}"
-    redirect_to @project, alert: "Failed to request re-certification: #{e.message}"
-  end
-
   def lapse_timelapses
     @project = Project.find(params[:id])
     authorize @project, :show?
@@ -697,7 +607,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def prepare_space_themed_form_state!(space_themed:)
+  def prepare_spxace_themed_form_state!(space_themed:)
     @space_themed_checked = space_themed
     @project.description = @project.description_without_space_theme_prefix if @project.space_themed?
   end

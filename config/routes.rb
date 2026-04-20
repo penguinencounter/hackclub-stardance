@@ -145,10 +145,6 @@ Rails.application.routes.draw do
   delete "my/club", to: "my#unlink_club", as: :my_club
   get "my/achievements", to: "achievements#index", as: :my_achievements
 
-  namespace :webhooks do
-    post "ship_cert", to: "ship_cert#update_status"
-  end
-
   namespace :seller do
     resources :orders, only: %i[index show] do
       member do
@@ -351,9 +347,6 @@ Rails.application.routes.draw do
       post :unmark_fire
       post :follow
       delete :unfollow
-      post :resend_webhook
-      get :confirm_recertification
-      post :request_recertification
     end
   end
 

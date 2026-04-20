@@ -60,12 +60,6 @@ class Post::ShipEvent < ApplicationRecord
   validates :review_instructions, length: { maximum: 2000 }, allow_blank: true
   validate :project_can_be_shipped, on: :create
   has_paper_trail ignore: [ :votes_count, :synced_at ]
-  def status
-    project = post&.project
-    return nil unless project
-
-    ShipCertService.get_status(project)
-  end
 
   def majority_judgment
     MajorityJudgmentService.call(self)

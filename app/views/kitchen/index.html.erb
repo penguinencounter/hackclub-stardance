@@ -93,8 +93,8 @@
           data-dialogue-iteration-text-value='<%= [
             "On Stardance, the projects that you build are time tracked!",
             "You install an extension in your code editor and the time tracking is automatic.",
-            "We need to track how much time you spend to reward you with cookies!",
-            "And that's how you're gonna earn cookies :p!",
+            "We need to track how much time you spend to reward you with Stardust!",
+            "And that's how you're gonna earn Stardust :p!",
             "Let's connect your Hackatime account so we can start tracking your coding time."
           ].to_json %>'
           data-dialogue-iteration-sprites-value='<%= (1..12).map { |i| image_path("orpheus_sprites/#{i}.png") }.to_json %>'
@@ -336,16 +336,16 @@
           caption: "Vote on projects!",
           modal_title: "Vote on projects!",
           step_num: 4,
-          modal_text: "<p>You're almost ready to get cookies for the hours you spent on your project — you just have to vote to unlock the payout! Voting is done by rating each project on a bunch of simple metrics:</p> <ul><li><b>Originality:</b> Is the project innovative and original, or just a clone of an overused concept?</li><li><b>Technical:</b> How complex is the project? Did the author use new frameworks or learn something cool?</li><li><b>Usability:</b> Is the project easy and fun to use, or is it buggy and frustrating?</li><li><b>Storytelling:</b> Does the author devlog regularly? Is the development timeline fun to scroll through?</li></ul> <p>Voting is done so people (including you) making good projects get more cookies per hour. For every project shipped, you must vote on 14 projects to get cookies!</p>"
+          modal_text: "<p>You're almost ready to get Stardust for the hours you spent on your project — you just have to vote to unlock the payout! Voting is done by rating each project on a bunch of simple metrics:</p> <ul><li><b>Originality:</b> Is the project innovative and original, or just a clone of an overused concept?</li><li><b>Technical:</b> How complex is the project? Did the author use new frameworks or learn something cool?</li><li><b>Usability:</b> Is the project easy and fun to use, or is it buggy and frustrating?</li><li><b>Storytelling:</b> Does the author devlog regularly? Is the development timeline fun to scroll through?</li></ul> <p>Voting is done so people (including you) making good projects get more Stardust per hour. For every project shipped, you must vote on 14 projects to get Stardust!</p>"
         ) %>
         <%= image_tag "kitchen_comic/arrow.avif", alt: "Arrow", class: "kitchen-comic__arrow" %>
         <%= render ComicCardComponent.new(
           image: "kitchen_comic/5.avif",
-          alt: "Earn cookies",
-          caption: "Earn cookies!",
-          modal_title: "Earn cookies!",
+          alt: "Earn Stardust",
+          caption: "Earn Stardust!",
+          modal_title: "Earn Stardust!",
           step_num: 5,
-          modal_text: "<p>Congratulations! You're now ready to get cookies for your hard work. You earn anywhere between 1 to 30 cookies per each hour you hack on a project — the better your project does in voting, the more cookies you get! Make sure to ship high quality projects to get bigger payouts.</p>"
+          modal_text: "<p>Congratulations! You're now ready to get Stardust for your hard work. You earn anywhere between 1 to 30 Stardust per each hour you hack on a project — the better your project does in voting, the more Stardust you get! Make sure to ship high quality projects to get bigger payouts.</p>"
         ) %>
         <%= image_tag "kitchen_comic/arrow.avif", alt: "Arrow", class: "kitchen-comic__arrow" %>
         <%= render ComicCardComponent.new(
@@ -354,7 +354,7 @@
           caption: "Win prizes!",
           modal_title: "Win prizes!",
           step_num: 6,
-          modal_text: %q{<p>Once you've earned enough cookies, you can place an order in the <a href='https://flavortown.hackclub.com/shop'>Shop</a>! You can get anything from domain grants and Raspberry Pi's to iPads and Macbooks.</p><br><p>After placing an order, you must wait again for it to be reviewed by the Fraud Squad — they just check to make sure nothing fishy is going on. Unfortunately, considering the scale at which Hack Club operates, we sometimes get bad actors trying to defraud our nonprofit, thus deeming this step necessary, especially for larger prizes. But you can rest easy — if you don't try do anything wrong, you'll never get in trouble!</p><br><p>One last thing: Hack Club always pays for shipping, but some special prizes may incur customs (a charge levied by your country's government on imported goods) if you live outside the US — which we will not be able to cover. Don't worry though, you'll know which items may incur customs during checkout so you can make an informed decision!</p>}
+          modal_text: %q{<p>Once you've earned enough Stardust, you can place an order in the <a href='https://flavortown.hackclub.com/shop'>Shop</a>! You can get anything from domain grants and Raspberry Pi's to iPads and Macbooks.</p><br><p>After placing an order, you must wait again for it to be reviewed by the Fraud Squad — they just check to make sure nothing fishy is going on. Unfortunately, considering the scale at which Hack Club operates, we sometimes get bad actors trying to defraud our nonprofit, thus deeming this step necessary, especially for larger prizes. But you can rest easy — if you don't try do anything wrong, you'll never get in trouble!</p><br><p>One last thing: Hack Club always pays for shipping, but some special prizes may incur customs (a charge levied by your country's government on imported goods) if you live outside the US — which we will not be able to cover. Don't worry though, you'll know which items may incur customs during checkout so you can make an informed decision!</p>}
         ) %>
         <%= image_tag "kitchen_comic/arrow.avif", alt: "Arrow", class: "kitchen-comic__arrow" %>
       </div>

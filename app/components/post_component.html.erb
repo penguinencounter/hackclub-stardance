@@ -85,12 +85,12 @@
                 <span class="post__payout-value"><%= postable.read_attribute(:hours)&.round(2) || '—' %></span>
               </div>
               <div class="post__payout-item">
-                <span class="post__payout-label">Cookies:</span>
+                <span class="post__payout-label">Stardust:</span>
                 <span class="post__payout-value">🍪 <%= postable.payout.to_i %></span>
               </div>
               <div class="post__payout-item">
                 <span class="post__payout-label">Multiplier:</span>
-                <span class="post__payout-value"><%= postable.multiplier&.round(2) || '—' %> cookies/hr</span>
+                <span class="post__payout-value"><%= postable.multiplier&.round(2) || '—' %> stardust/hr</span>
               </div>
             </div>
           <% else %>
@@ -101,12 +101,12 @@
                 <span class="post__payout-value"><%= estimate&.dig(:hours) || '—' %></span>
               </div>
               <div class="post__payout-item">
-                <span class="post__payout-label">Cookies:</span>
+                <span class="post__payout-label">Stardust:</span>
                 <span class="post__payout-value">🍪 ~<%= estimate&.dig(:cookies) || '—' %></span>
               </div>
               <div class="post__payout-item">
                 <span class="post__payout-label">Multiplier:</span>
-                <span class="post__payout-value"><%= estimate&.dig(:multiplier) || '—' %> cookies/hr</span>
+                <span class="post__payout-value"><%= estimate&.dig(:multiplier) || '—' %> stardust/hr</span>
               </div>
               <div class="post__payout-estimate-notice">
                 <small>⏳ Estimated (payout not issued yet)</small>

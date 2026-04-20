@@ -9,8 +9,8 @@ section "Ship event: #{ship_event_label}#{ship_date.present? ? " (shipped #{ship
 section "Payout details:",
   fields: [
     mrkdwn_text("*Hours:* #{hours || '—'}"),
-    mrkdwn_text("*Cookies:* :ft-cookie: #{cookies || '—'}"),
-    mrkdwn_text("*Multiplier:* #{multiplier || '—'} cookies/hr"),
+    mrkdwn_text("*Stardust:* :ft-cookie: #{cookies || '—'}"),
+    mrkdwn_text("*Multiplier:* #{multiplier || '—'} stardust/hr"),
   ]
 
 if blessing == "blessed"

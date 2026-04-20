@@ -7,6 +7,7 @@
   overflow-x: clip;
   overflow-y: visible;
   padding: 0;
+  margin-bottom: 5rem;
 
   .rsvp-container {
     position: relative;
@@ -55,25 +56,6 @@
       }
     }
 
-    @keyframes carat-bounce {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-16px);
-      }
-    }
-
-    .carat {
-      margin-top: 50px;
-      // Center the 48px arrow under the 137px RSVP button: (137 - 48) / 2 ≈ 44px
-      align-self: flex-end;
-      margin-right: 44px;
-      animation: carat-bounce 1.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
-      filter: brightness(0) saturate(100%) invert(94%) sepia(15%) saturate(540%)
-        hue-rotate(8deg) brightness(96%) contrast(89%);
-    }
   }
 }
 
@@ -134,11 +116,6 @@
 @media (max-width: 600px) {
   .hero .rsvp-container {
     min-width: 0;
-  }
-
-  .hero .rsvp-form .carat {
-    align-self: center;
-    margin-right: 0;
   }
 
   .hero__headline {

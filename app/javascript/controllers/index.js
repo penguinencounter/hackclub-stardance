@@ -121,9 +121,6 @@ application.register("responsive-image-map", ResponsiveImageMapController);
 import SearchableSelectController from "./searchable_select_controller";
 application.register("searchable-select", SearchableSelectController);
 
-import ShootingStarController from "./shooting_star_controller";
-application.register("shooting-star", ShootingStarController);
-
 import ShopController from "./shop_controller";
 application.register("shop", ShopController);
 
@@ -138,9 +135,6 @@ application.register("sidebar-pin", SidebarPinController);
 
 import SnowController from "./snow_controller";
 application.register("snow", SnowController);
-
-import StarsController from "./stars_controller";
-application.register("stars", StarsController);
 
 import StartDevlogController from "./start_devlog_controller";
 application.register("start-devlog", StartDevlogController);

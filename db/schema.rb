@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_19_230221) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_20_094048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vector"
@@ -869,8 +869,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_19_230221) do
     t.text "internal_notes"
     t.string "last_name"
     t.boolean "leaderboard_optin", default: false, null: false
-    t.string "magic_link_token"
-    t.datetime "magic_link_token_expires_at"
     t.boolean "manual_ysws_override"
     t.datetime "metrics_synced_at"
     t.integer "projects_count"
@@ -904,7 +902,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_19_230221) do
     t.index ["airtable_record_id"], name: "index_users_on_airtable_record_id", unique: true
     t.index ["api_key"], name: "index_users_on_api_key", unique: true
     t.index ["email"], name: "index_users_on_email"
-    t.index ["magic_link_token"], name: "index_users_on_magic_link_token", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["slack_id"], name: "index_users_on_slack_id", unique: true
   end

@@ -10,7 +10,6 @@ Disallow: /internal/
 # Auth & sessions
 Disallow: /auth/
 Disallow: /oauth/
-Disallow: /magic_links/
 Disallow: /login
 Disallow: /start/
 

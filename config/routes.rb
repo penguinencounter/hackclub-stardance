@@ -148,11 +148,6 @@ Rails.application.routes.draw do
   delete "my/club", to: "my#unlink_club", as: :my_club
   get "my/achievements", to: "achievements#index", as: :my_achievements
 
-  # Magic Links
-  post "magic_links", to: "magic_links#create"
-  get "magic_links/verify", to: "magic_links#verify"
-
-
   # API
   namespace :webhooks do
     post "ship_cert", to: "ship_cert#update_status"
@@ -279,7 +274,6 @@ Rails.application.routes.draw do
        collection do
          post :stop_impersonating
        end
-       resource :magic_link, only: [ :show ]
      end
     resources :projects, only: [ :index, :show ], shallow: true do
       member do

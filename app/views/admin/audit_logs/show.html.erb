@@ -93,7 +93,7 @@
           </tr>
         </thead>
         <tbody>
-          <% sensitive_fields = %w[magic_link_token magic_link_token_digest encrypted_password password_digest frozen_address frozen_address_ciphertext frozen_phone_ciphertext email address ip_address phone phone_number hcb_email] %>
+          <% sensitive_fields = %w[encrypted_password password_digest frozen_address frozen_address_ciphertext frozen_phone_ciphertext email address ip_address phone phone_number hcb_email] %>
           <% changes.each do |field, values| %>
             <tr>
               <td><code class="audit-log-detail__field"><%= field %></code></td>

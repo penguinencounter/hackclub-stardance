@@ -44,7 +44,6 @@
             <% if (helpers.current_user&.admin? || helpers.current_user&.fraud_dept?) && post.user %>
               <span class="post__admin-tools">
                 <%= link_to "🔨", helpers.admin_user_path(post.user), title: "Admin profile" %>
-                <%= link_to "🤓", helpers.admin_user_magic_link_path(post.user), title: "Generate magic link" %>
               </span>
             <% end %>
             <span class="post__author-activity"><%= author_activity %></span>

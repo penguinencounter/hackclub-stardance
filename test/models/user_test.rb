@@ -23,8 +23,6 @@
 #  internal_notes                          :text
 #  last_name                               :string
 #  leaderboard_optin                       :boolean          default(FALSE), not null
-#  magic_link_token                        :string
-#  magic_link_token_expires_at             :datetime
 #  manual_ysws_override                    :boolean
 #  metrics_synced_at                       :datetime
 #  projects_count                          :integer
@@ -63,7 +61,6 @@
 #  index_users_on_airtable_record_id  (airtable_record_id) UNIQUE
 #  index_users_on_api_key             (api_key) UNIQUE
 #  index_users_on_email               (email)
-#  index_users_on_magic_link_token    (magic_link_token) UNIQUE
 #  index_users_on_session_token       (session_token) UNIQUE
 #  index_users_on_slack_id            (slack_id) UNIQUE
 #

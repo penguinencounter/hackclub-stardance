@@ -51,7 +51,7 @@
   // Nested borders, outermost to innermost. Each wraps the next with 10px of
   // padding so the borders read as concentric frames.
   &__border {
-    border: 2px solid #eee7bb;
+    border: 2px solid var(--color-yellow-200);
     padding: 10px;
     backdrop-filter: blur(12px);
 
@@ -78,7 +78,7 @@
   }
 
   &__inner {
-    border: 2px solid #eee7bb;
+    border: 2px solid var(--color-yellow-200);
     border-radius: 8px;
     background: #08061e;
     padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 5vw, 4rem);

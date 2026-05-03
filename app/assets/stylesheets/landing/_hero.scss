@@ -171,7 +171,7 @@
   font-family: "Exo 2", sans-serif;
   font-size: 18px;
   font-style: italic;
-  color: #eee7bb;
+  color: var(--color-yellow-200);
   margin: 0;
   align-self: flex-start;
   text-align: left;
@@ -239,7 +239,7 @@
 
 @keyframes rsvp-counter-tick {
   0% {
-    color: #eee7bb;
+    color: var(--color-yellow-200);
     text-shadow: 0 0 0 rgba(255, 245, 200, 0);
   }
   30% {
@@ -247,7 +247,7 @@
     text-shadow: 0 0 14px rgba(255, 245, 200, 0.75);
   }
   100% {
-    color: #eee7bb;
+    color: var(--color-yellow-200);
     text-shadow: 0 0 0 rgba(255, 245, 200, 0);
   }
 }

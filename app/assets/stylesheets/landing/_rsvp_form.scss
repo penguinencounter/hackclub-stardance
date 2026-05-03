@@ -4,7 +4,7 @@
 .rsvp-form {
   .input-red {
     background: rgba(255, 255, 255, 0.25);
-    border: 2px solid #eee7bb;
+    border: 2px solid var(--color-yellow-200);
     border-radius: 2px;
     flex: 1 1 auto;
     min-width: 0;
@@ -13,7 +13,7 @@
     align-items: center;
 
     &:has(input:focus-visible) {
-      outline: 3px solid #eee7bb;
+      outline: 3px solid var(--color-yellow-200);
       outline-offset: 2px;
     }
 
@@ -54,7 +54,7 @@
   }
 
   .btn--red.btn--striped {
-    background: #eee7bb;
+    background: var(--color-yellow-200);
     border: none;
     border-radius: 1px;
     padding: 0;
@@ -67,7 +67,7 @@
     }
 
     > div {
-      background: #eee7bb;
+      background: var(--color-yellow-200);
       color: #1a1608;
       font-family: "Exo 2", sans-serif;
       font-weight: 700;

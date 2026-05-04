@@ -17,10 +17,13 @@ function loadVimeoSdk() {
   return sdkPromise;
 }
 
-// Wraps a Vimeo iframe with custom play/pause, scrub, and mute controls,
-// and attempts to autoplay with sound. Browsers block unmuted autoplay
-// until a user gesture, so we start muted and unmute on the first
-// pointerdown/keydown anywhere on the page if we couldn't unmute on load.
+// Wraps a Vimeo iframe with custom play/pause, scrub, and mute controls.
+// The video starts muted (browsers block unmuted autoplay without a user
+// gesture). Until the user unmutes for the first time, a prominent prompt
+// is shown in the top-right of the video and any click on the wrapper
+// unmutes instead of toggling play/pause. Once that first unmute lands,
+// the prompt is permanently removed and clicks revert to play/pause —
+// re-muting via the controls does not bring the prompt back.
 export default class extends Controller {
   static targets = ["iframe", "scrub"];
 
@@ -30,22 +33,21 @@ export default class extends Controller {
 
     this.player = new window.Vimeo.Player(this.iframeTarget);
     this.isScrubbing = false;
-    this.userTouchedMute = false;
+
+    // Show the big top-right unmute prompt and arm the click-to-unmute
+    // behavior on wrapperClick. Cleared on first successful unmute below.
+    this.element.classList.add("hero__video--needs-unmute");
+    this.element.classList.add("hero__video--muted");
 
     this.player.ready().then(async () => {
       try {
         const duration = await this.player.getDuration();
         this.scrubTarget.max = String(duration);
       } catch (_) {}
-      // Reflect the iframe's initial muted state in the UI before we attempt
-      // to flip it, so the mute icon doesn't briefly lie to the user.
       try {
         const muted = await this.player.getMuted();
         this._setMutedState(muted);
       } catch (_) {}
-      // Try to unmute right away. Most browsers will reject this without a
-      // user gesture; we silently fall back to muted in that case.
-      this._tryUnmute();
     });
 
     this.player.on("play", () => this._setPlayState(true));
@@ -59,22 +61,15 @@ export default class extends Controller {
     this.player.on("volumechange", async () => {
       const muted = await this.player.getMuted();
       this._setMutedState(muted);
+      if (!muted) {
+        this.element.classList.remove("hero__video--needs-unmute");
+      }
     });
-
-    // First-gesture fallback: if we're still muted after page load, unmute
-    // the moment the user does anything — unless they've already toggled
-    // the mute button themselves. Bubble phase (capture: false) so the mute
-    // button's own handler runs first and userTouchedMute is set in time.
-    this._firstGesture = this._firstGesture.bind(this);
-    document.addEventListener("pointerdown", this._firstGesture, { once: true });
-    document.addEventListener("keydown", this._firstGesture, { once: true });
 
     this._setupPin();
   }
 
   disconnect() {
-    document.removeEventListener("pointerdown", this._firstGesture);
-    document.removeEventListener("keydown", this._firstGesture);
     if (this._onPinScroll) {
       window.removeEventListener("scroll", this._onPinScroll);
     }
@@ -126,8 +121,18 @@ export default class extends Controller {
         this._pinState = "pinned";
       }
     } else if (this._pinState === "pinned") {
-      this.element.classList.add("hero__video--unpinning");
-      this._pinState = "unpinning";
+      // If the user dismissed the pinned mini-player, scrolling back up
+      // resets it: drop the dismissed + pinned classes immediately so the
+      // video reappears in its hero spot (skip the slide-out, since it's
+      // already invisible in the corner).
+      if (this.element.classList.contains("hero__video--dismissed")) {
+        this.element.classList.remove("hero__video--pinned");
+        this.element.classList.remove("hero__video--dismissed");
+        this._pinState = "unset";
+      } else {
+        this.element.classList.add("hero__video--unpinning");
+        this._pinState = "unpinning";
+      }
     }
   }
 
@@ -139,15 +144,33 @@ export default class extends Controller {
     });
   }
 
-  // Click anywhere on the video (outside the controls) toggles play/pause.
+  // Click anywhere on the video (outside the controls) — first click while
+  // the unmute prompt is showing unmutes the video; subsequent clicks toggle
+  // play/pause as usual.
   wrapperClick(e) {
     if (e.target.closest(".hero__video-controls")) return;
+    if (e.target.closest(".hero__video-star")) return;
+    if (!this.player) return;
+    if (this.element.classList.contains("hero__video--needs-unmute")) {
+      e.preventDefault();
+      this._tryUnmute();
+      return;
+    }
     this.togglePlay(e);
+  }
+
+  // Star click: only meaningful when the video is pinned to the corner —
+  // dismisses the pinned video for the rest of the session.
+  starClick(e) {
+    if (!this.element.classList.contains("hero__video--pinned")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    this.element.classList.add("hero__video--dismissed");
+    if (this.player) this.player.pause().catch(() => {});
   }
 
   toggleMute(e) {
     e.preventDefault();
-    this.userTouchedMute = true;
     this.player.getMuted().then((muted) => {
       if (muted) this._tryUnmute();
       else this.player.setMuted(true);
@@ -184,14 +207,6 @@ export default class extends Controller {
     } catch (_) {
       // Autoplay policy blocked us — stay muted until a user gesture.
     }
-  }
-
-  _firstGesture(event) {
-    if (this.userTouchedMute || !this.player) return;
-    if (event?.target?.closest('[data-action*="vimeo-player#toggleMute"]')) return;
-    this.player.getMuted().then((muted) => {
-      if (muted) this._tryUnmute();
-    });
   }
 
   _setPlayState(playing) {

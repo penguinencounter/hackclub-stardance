@@ -410,6 +410,12 @@
   right: -4.5%;
   pointer-events: none;
   z-index: 2;
+  // Hide the lower portion of the star (legs + checkmark) so it reads as
+  // peeking out from BEHIND the video's top edge. The 47% matches the
+  // geometry: with width 110 and top -52 on a 0.892-aspect image, ~47% of
+  // the star sits inside the video bounds. The pinned breakpoint (width 64,
+  // top -30) lands on the same ratio, so one value covers all sizes.
+  clip-path: inset(0 0 47% 0);
 
   @media (max-width: 900px) {
     width: 84px;
@@ -423,6 +429,80 @@
     right: -4.75%;
   }
   scale: -1 1;
+}
+
+// First-load unmute prompt: prominent top-right speaker-with-X with a
+// pulsing ring. Visible only while .hero__video--needs-unmute is set; the
+// controller removes that class once the first unmute lands and never
+// re-adds it. pointer-events: none so wrapper-level click-to-unmute fires.
+.hero__video-unmute-prompt {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(8, 6, 30, 0.62);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 260ms ease-out, transform 260ms ease-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(238, 231, 187, 0.85);
+    animation: hero-video-unmute-pulse 1.6s ease-out infinite;
+  }
+
+  svg {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    width: 52px;
+    height: 52px;
+    top: 10px;
+    right: 10px;
+
+    svg { width: 26px; height: 26px; }
+  }
+}
+
+.hero__video--needs-unmute {
+  .hero__video-unmute-prompt {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-video-unmute-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__video-unmute-prompt::before {
+    animation: none;
+    opacity: 0.6;
+  }
 }
 
 // Custom controls bar: play/pause, scrub, mute. Hidden until the user hovers
@@ -573,11 +653,14 @@
 
   // Re-anchor the star to the wrapper's right edge at a size that suits the
   // mini-player; the original full-size coordinates would float off-canvas.
+  // While pinned, the star is the dismiss affordance — make it clickable.
   .hero__video-star {
     width: 64px;
     top: -30px;
     left: auto;
     right: -16px;
+    pointer-events: auto;
+    cursor: pointer;
   }
 
   @media (max-width: 600px) {
@@ -597,6 +680,14 @@
 // into the hero layout.
 .hero__video--unpinning {
   animation: hero-video-pin-out 420ms cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+// Dismissed: user clicked the star while pinned — fade out and stop
+// receiving pointer events. One-way for the rest of the session.
+.hero__video--dismissed {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease-out;
 }
 
 @keyframes hero-video-pin-out {

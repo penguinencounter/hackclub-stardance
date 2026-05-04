@@ -28,7 +28,10 @@ html.warping {
   .hero__doodle-arrow,
   .hero__earth,
   .hero__moon,
-  .hero__nasa-photo {
+  .hero__nasa-photo,
+  .hero__video-star,
+  .what-is-this__divider-line,
+  .what-is-this__divider-sparkle {
     opacity: 0;
   }
 }
@@ -83,6 +86,22 @@ html.warped {
   .project-thumbs {
     animation: warp-rise 640ms cubic-bezier(0.2, 0.7, 0.2, 1) 350ms both;
   }
+
+  .hero__video-star {
+    animation: warp-star-peek 620ms cubic-bezier(0.2, 0.7, 0.2, 1) 780ms both;
+  }
+
+  .what-is-this__divider-line {
+    animation: warp-line-draw 720ms cubic-bezier(0.2, 0.7, 0.2, 1) 900ms both;
+  }
+
+  .what-is-this__divider-sparkle--left {
+    animation: warp-sparkle-pop 540ms cubic-bezier(0.2, 0.7, 0.2, 1) 1380ms both;
+  }
+
+  .what-is-this__divider-sparkle--right {
+    animation: warp-sparkle-pop 540ms cubic-bezier(0.2, 0.7, 0.2, 1) 1460ms both;
+  }
 }
 
 @keyframes warp-rise {
@@ -104,6 +123,55 @@ html.warped {
   to {
     opacity: var(--nasa-opacity, 1);
     filter: blur(0);
+  }
+}
+
+// Star "peek" reveal. The star is statically clipped at the video's top
+// edge (inset bottom 47% in _hero.scss); this keyframe pins the bottom of
+// the visible region to that same edge and animates the top inset from 53%
+// → 0%, so the star appears to rise out from behind the video instead of
+// dropping in over it. Translating the star instead would move the clip
+// with it and break the illusion.
+@keyframes warp-star-peek {
+  from {
+    clip-path: inset(53% 0 47% 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(0 0 47% 0);
+    opacity: 1;
+  }
+}
+
+// Line draws outward from center. Preserves the existing translateY(-50%)
+// that vertically centers the line on its track.
+@keyframes warp-line-draw {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+// Preserves the sparkle's translate(-50%, -50%) positioning while popping in.
+@keyframes warp-sparkle-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  65% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
@@ -136,10 +204,27 @@ html.warped {
     .hero__doodle-arrow,
     .hero__earth,
     .hero__moon,
-    .hero__nasa-photo {
+    .hero__nasa-photo,
+    .hero__video-star,
+    .what-is-this__divider-line,
+    .what-is-this__divider-sparkle {
       animation: warp-reduced-fade 400ms ease-out 80ms both !important;
-      transform: none !important;
       filter: none !important;
+    }
+
+    .landing-header,
+    .project-thumbs,
+    .hero__eyebrow,
+    .hero__headline > span,
+    .hero__subhead,
+    .hero__caption,
+    .rsvp-form,
+    .hero__doodle-arrow,
+    .hero__earth,
+    .hero__moon,
+    .hero__nasa-photo,
+    .hero__video-star {
+      transform: none !important;
     }
   }
 }

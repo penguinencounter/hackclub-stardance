@@ -186,8 +186,9 @@ export default class extends Controller {
     }
   }
 
-  _firstGesture() {
+  _firstGesture(event) {
     if (this.userTouchedMute || !this.player) return;
+    if (event?.target?.closest('[data-action*="vimeo-player#toggleMute"]')) return;
     this.player.getMuted().then((muted) => {
       if (muted) this._tryUnmute();
     });

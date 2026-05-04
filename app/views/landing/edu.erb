@@ -8,21 +8,41 @@
 
 <% poster_request_url = "https://forms.hackclub.com/t/k4g4nCuSbLus" %>
 <% patch_request_url  = "https://forms.hackclub.com/t/g7PK8MCKgbus" %>
+<% artemis_patch_image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Artemis_II_patch.png/960px-Artemis_II_patch.png" %>
 
 <div class="educator-toolkit">
   <%= render "landing/sections/header" %>
 
   <section class="educator-toolkit__hero">
-    <h1 class="educator-toolkit__title">
-      Educator <span class="educator-toolkit__title--italic">Toolkit</span>
-    </h1>
-    <p class="educator-toolkit__subtitle">
-      Everything you need to spread the word about Stardance Challenge.
-      Show the video, get free posters, and request an Artemis mission patch.
-    </p>
-    <p class="educator-toolkit__teen-cta">
-      Teen? <a href="https://stardance.hackclub.com/edu-return">Head here instead &rarr;</a>
-    </p>
+    <div class="educator-toolkit__hero-copy">
+      <h1 class="educator-toolkit__title">
+        Educator <span class="educator-toolkit__title--italic">Toolkit</span>
+      </h1>
+      <p class="educator-toolkit__subtitle">
+        Everything you need to spread the word about Stardance Challenge.
+        Show the video, get free posters, and request an Artemis mission patch.
+      </p>
+      <p class="educator-toolkit__teen-cta">
+        Teen? <a href="https://stardance.hackclub.com/edu-return">Head here instead &rarr;</a>
+      </p>
+    </div>
+    <div class="educator-toolkit__hero-patch" aria-hidden="true">
+      <div class="educator-toolkit__hero-patch-frame">
+        <%= image_tag artemis_patch_image_url,
+                      alt: "",
+                      class: "educator-toolkit__hero-patch-image",
+                      loading: "eager" %>
+        <div class="educator-toolkit__hero-patch-group">
+          <%= image_tag image_url("landing/hero/star-character.png"),
+                        alt: "",
+                        aria_hidden: "true",
+                        class: "educator-toolkit__hero-patch-mascot" %>
+          <p class="educator-toolkit__hero-patch-note">
+            Get this patch free for showing the video to your classroom!
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="educator-toolkit__resources">
@@ -39,37 +59,38 @@
           </iframe>
         </div>
         <div class="educator-toolkit__resource-body">
-          <h3 class="educator-toolkit__resource-title">2&#8209;minute classroom video</h3>
+          <h3 class="educator-toolkit__resource-title">Step 1: Show the 2&#8209;minute classroom video</h3>
           <p class="educator-toolkit__resource-meta">
-            Two minutes, classroom-ready. Show it before students sign up.
+            Play this quick overview in class so students know what Stardance is
+            and how they can join.
           </p>
         </div>
       </div>
 
       <div class="educator-toolkit__resource-stack">
         <a class="educator-toolkit__resource educator-toolkit__resource--compact"
-           href="<%= poster_request_url %>"
-           target="_blank"
-           rel="noopener">
-          <span class="educator-toolkit__resource-body">
-            <span class="educator-toolkit__resource-title">Request free posters</span>
-            <span class="educator-toolkit__resource-meta">Free classroom posters, mailed to your door.</span>
-          </span>
-          <span class="educator-toolkit__resource-action">
-            Request posters <span aria-hidden="true">&rarr;</span>
-          </span>
-        </a>
-
-        <a class="educator-toolkit__resource educator-toolkit__resource--compact"
            href="<%= patch_request_url %>"
            target="_blank"
            rel="noopener">
           <span class="educator-toolkit__resource-body">
-            <span class="educator-toolkit__resource-title">Get an Artemis II mission patch</span>
-            <span class="educator-toolkit__resource-meta">Sewn Artemis II mission patch, mailed after you show the video.</span>
+            <span class="educator-toolkit__resource-title">Step 2: Request your Artemis II mission patch</span>
+            <span class="educator-toolkit__resource-meta">A sewn Artemis II mission patch, mailed to educators who show the video.</span>
           </span>
           <span class="educator-toolkit__resource-action">
             Request patch <span aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+
+        <a class="educator-toolkit__resource educator-toolkit__resource--compact"
+           href="<%= poster_request_url %>"
+           target="_blank"
+           rel="noopener">
+          <span class="educator-toolkit__resource-body">
+            <span class="educator-toolkit__resource-title">Request free classroom posters</span>
+            <span class="educator-toolkit__resource-meta">Optional posters to help students remember where to sign up.</span>
+          </span>
+          <span class="educator-toolkit__resource-action">
+            Request posters <span aria-hidden="true">&rarr;</span>
           </span>
         </a>
 
@@ -129,15 +150,46 @@
     <div class="faq-section__list">
       <div class="faq-section__item" data-action="click->faq-accordion#toggle">
         <span class="faq-section__number">1.</span>
-        <span class="faq-section__question">Does it cost anything?</span>
+        <span class="faq-section__question">What do educators need to do?</span>
         <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
         <div class="faq-section__answer" data-faq-accordion-target="answer">
-          No, it&rsquo;s completely free for students.
+          Show the 2-minute Stardance video to your students. After you share it,
+          request your free Artemis II mission patch from this page.
         </div>
       </div>
 
       <div class="faq-section__item" data-action="click->faq-accordion#toggle">
         <span class="faq-section__number">2.</span>
+        <span class="faq-section__question">How do I get the Artemis II mission patch?</span>
+        <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
+        <div class="faq-section__answer" data-faq-accordion-target="answer">
+          Use the patch request form after you show the classroom video. We&rsquo;ll mail
+          the sewn Artemis II mission patch as a thank-you for helping students
+          discover Stardance.
+        </div>
+      </div>
+
+      <div class="faq-section__item" data-action="click->faq-accordion#toggle">
+        <span class="faq-section__number">3.</span>
+        <span class="faq-section__question">Does it cost anything?</span>
+        <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
+        <div class="faq-section__answer" data-faq-accordion-target="answer">
+          No, it&rsquo;s completely free for educators and students.
+        </div>
+      </div>
+
+      <div class="faq-section__item" data-action="click->faq-accordion#toggle">
+        <span class="faq-section__number">4.</span>
+        <span class="faq-section__question">Do I need to run anything?</span>
+        <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
+        <div class="faq-section__answer" data-faq-accordion-target="answer">
+          No, students participate independently. You don&rsquo;t need to organize or
+          supervise anything &mdash; just show the video and spread the word.
+        </div>
+      </div>
+
+      <div class="faq-section__item" data-action="click->faq-accordion#toggle">
+        <span class="faq-section__number">5.</span>
         <span class="faq-section__question">Is it open to beginners?</span>
         <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
         <div class="faq-section__answer" data-faq-accordion-target="answer">
@@ -148,17 +200,7 @@
       </div>
 
       <div class="faq-section__item" data-action="click->faq-accordion#toggle">
-        <span class="faq-section__number">3.</span>
-        <span class="faq-section__question">Do I need to run anything?</span>
-        <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
-        <div class="faq-section__answer" data-faq-accordion-target="answer">
-          No, students participate independently. You don&rsquo;t need to organize or
-          supervise anything &mdash; just spread the word.
-        </div>
-      </div>
-
-      <div class="faq-section__item" data-action="click->faq-accordion#toggle">
-        <span class="faq-section__number">4.</span>
+        <span class="faq-section__number">6.</span>
         <span class="faq-section__question">What do students build?</span>
         <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
         <div class="faq-section__answer" data-faq-accordion-target="answer">
@@ -168,7 +210,7 @@
       </div>
 
       <div class="faq-section__item" data-action="click->faq-accordion#toggle">
-        <span class="faq-section__number">5.</span>
+        <span class="faq-section__number">7.</span>
         <span class="faq-section__question">What do they earn?</span>
         <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
         <div class="faq-section__answer" data-faq-accordion-target="answer">
@@ -178,7 +220,7 @@
       </div>
 
       <div class="faq-section__item" data-action="click->faq-accordion#toggle">
-        <span class="faq-section__number">6.</span>
+        <span class="faq-section__number">8.</span>
         <span class="faq-section__question">How does it actually work?</span>
         <span class="faq-section__arrow" data-faq-accordion-target="arrow">&#9654;</span>
         <div class="faq-section__answer" data-faq-accordion-target="answer">

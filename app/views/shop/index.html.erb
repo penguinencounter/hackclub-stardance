@@ -1,6 +1,6 @@
 <% content_for :title, "Shop" %>
 <% content_for :og_title, "Stardance Shop" %>
-<% content_for :og_description, "Spend your Stardust on stickers, hardware, and other prizes. Earn Stardust by building projects and voting!" %>
+<% content_for :og_description, "Spend your Sparks on stickers, hardware, and other prizes. Earn Sparks by building projects and voting!" %>
 <% content_for :og_image, og_image_url('shop', format: :png) %>
 
 <%= render MusicPlayerComponent.new(audio_urls: [audio_path("fireentity - shop.mp3"), audio_path("fireentity - voting.mp3"),audio_path("fireentity - explore.mp3")], default_index: 0) %>
@@ -8,9 +8,9 @@
 <% if @show_shop_tutorial && session[:tutorial_redirect_url].present? %>
   <%= render DialogueBoxComponent.new(
     text: [
-      "You're in the shop now. This is where you spend Stardust on prizes.",
-      "Stardust is the currency you use to buy prizes here. You earn Stardust by working on your project with your time attached, then voting on other projects.",
-      "I've given you 10 Stardust to get started. We'll use them to place your stickers order.",
+      "You're in the shop now. This is where you spend Sparks on prizes.",
+      "Sparks is the currency you use to buy prizes here. You earn Sparks by working on your project with your time attached, then voting on other projects.",
+      "I've given you 10 Sparks to get started. We'll use them to place your stickers order.",
       "Before we can ship prizes, I need to confirm that you're a teenager and get your address. I'll redirect you to Hack Club Auth to fill that out. It's secure and open source."
     ],
     sticker: "cookie.svg",
@@ -49,7 +49,7 @@
       <div class="shop__signup-cta">
         <div class="shop__signup-cta-content">
           <h3>🍪 Want to order something?</h3>
-          <p>Join <%= link_to "Hack Club Stardance", "/" %> to start earning Stardust by building personal projects!</p>
+          <p>Join <%= link_to "Hack Club Stardance", "/" %> to start earning Sparks by building personal projects!</p>
         </div>
         <div class="shop__signup-cta-buttons">
           <%= link_to "Get building!", root_path, class: "btn btn-cta" %>

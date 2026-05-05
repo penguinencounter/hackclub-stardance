@@ -51,8 +51,12 @@
     width: auto;
     transform: translate(-50%, -50%);
 
-    &--left { left: 16.86%; }
-    &--right { left: 83.58%; }
+    &--left {
+      left: 16.86%;
+    }
+    &--right {
+      left: 83.58%;
+    }
   }
 
   &__nebula {
@@ -97,7 +101,13 @@
       rgb(9, 7, 30) 91.3%,
       rgba(9, 7, 30, 0) 100%
     );
-    background-image: linear-gradient(90deg, rgba(9, 7, 30, 0) 0%, rgb(9, 7, 30) 10%, rgb(9, 7, 30) 90%, rgba(9, 7, 30, 0) 100%);
+    background-image: linear-gradient(
+      90deg,
+      rgba(9, 7, 30, 0) 0%,
+      rgb(9, 7, 30) 10%,
+      rgb(9, 7, 30) 90%,
+      rgba(9, 7, 30, 0) 100%
+    );
   }
 
   &__subtitle {
@@ -111,8 +121,7 @@
     z-index: 1;
   }
 
-
   @media (max-width: 600px) {
-  margin-bottom: 3rem;
+    margin-bottom: 3rem;
   }
 }

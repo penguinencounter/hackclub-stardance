@@ -148,19 +148,19 @@
   pointer-events: none;
   z-index: 2;
   transform: rotate(-9deg);
-	right: calc(-420px + 30vw);
+  right: calc(-420px + 30vw);
 
   @media (max-width: 600px) {
     width: 96px;
     right: -37px;
     top: 46.9px;
-	}
+  }
 
-	@media (max-width: 900px) {
+  @media (max-width: 900px) {
     width: 96px;
     right: -64.8px;
     top: 45.7px;
-	}
+  }
 }
 
 .hero__caption {
@@ -394,8 +394,7 @@
     right: 1rem;
     width: auto;
     margin: 0;
-    transform: perspective(1000px) rotateX(var(--tilt-x))
-      rotateY(var(--tilt-y));
+    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   }
 }
 
@@ -452,7 +451,9 @@
   pointer-events: none;
   opacity: 0;
   transform: scale(0.85);
-  transition: opacity 260ms ease-out, transform 260ms ease-out;
+  transition:
+    opacity 260ms ease-out,
+    transform 260ms ease-out;
 
   &::before {
     content: "";
@@ -476,7 +477,10 @@
     top: 10px;
     right: 10px;
 
-    svg { width: 26px; height: 26px; }
+    svg {
+      width: 26px;
+      height: 26px;
+    }
   }
 }
 
@@ -546,8 +550,13 @@
   cursor: pointer;
   transition: background 150ms ease-out;
 
-  &:hover { background: rgba(255, 255, 255, 0.18); }
-  &:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  &:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
 }
 
 .hero__video-icon {
@@ -559,16 +568,26 @@
 // Default state shows "play" + "unmuted" icons; the controller toggles
 // classes on .hero__video to swap them.
 .hero__video-icon--pause,
-.hero__video-icon--muted { display: none; }
+.hero__video-icon--muted {
+  display: none;
+}
 
 .hero__video--playing {
-  .hero__video-icon--play { display: none; }
-  .hero__video-icon--pause { display: block; }
+  .hero__video-icon--play {
+    display: none;
+  }
+  .hero__video-icon--pause {
+    display: block;
+  }
 }
 
 .hero__video--muted {
-  .hero__video-icon--unmuted { display: none; }
-  .hero__video-icon--muted { display: block; }
+  .hero__video-icon--unmuted {
+    display: none;
+  }
+  .hero__video-icon--muted {
+    display: block;
+  }
 }
 
 // Visible track is 4px tall, but the input itself is taller so the click /
@@ -630,7 +649,10 @@
     cursor: pointer;
   }
 
-  &:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+  }
 }
 
 // Pinned mini-player: same DOM element as `.hero__video`, just re-anchored to
@@ -785,7 +807,6 @@
 // Resting layout once the warp reveal lands; see landing/_warp.scss for the
 // animation flow that gets us here.
 html.warped {
-
   .hero__headline > span:nth-child(1) {
     margin: 1rem 0;
   }
@@ -795,8 +816,4 @@ html.warped {
       max-width: 90vw;
     }
   }
-
-
-
 }
-

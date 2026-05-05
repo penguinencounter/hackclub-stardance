@@ -49,8 +49,12 @@
     width: auto;
     transform: translate(-50%, -50%);
 
-    &--left { left: 16.86%; }
-    &--right { left: 83.58%; }
+    &--left {
+      left: 16.86%;
+    }
+    &--right {
+      left: 83.58%;
+    }
   }
 
   &__star-artwork {

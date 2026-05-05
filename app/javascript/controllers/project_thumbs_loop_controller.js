@@ -29,13 +29,27 @@ export default class extends Controller {
       }, 600);
     };
     this._onScroll = () => this._wrap();
-    this.element.addEventListener("pointerdown", this._onUserStart, { passive: true });
-    this.element.addEventListener("touchstart", this._onUserStart, { passive: true });
-    this.element.addEventListener("wheel", this._onUserStart, { passive: true });
-    this.element.addEventListener("pointerup", this._onUserEnd, { passive: true });
-    this.element.addEventListener("pointercancel", this._onUserEnd, { passive: true });
-    this.element.addEventListener("touchend", this._onUserEnd, { passive: true });
-    this.element.addEventListener("touchcancel", this._onUserEnd, { passive: true });
+    this.element.addEventListener("pointerdown", this._onUserStart, {
+      passive: true,
+    });
+    this.element.addEventListener("touchstart", this._onUserStart, {
+      passive: true,
+    });
+    this.element.addEventListener("wheel", this._onUserStart, {
+      passive: true,
+    });
+    this.element.addEventListener("pointerup", this._onUserEnd, {
+      passive: true,
+    });
+    this.element.addEventListener("pointercancel", this._onUserEnd, {
+      passive: true,
+    });
+    this.element.addEventListener("touchend", this._onUserEnd, {
+      passive: true,
+    });
+    this.element.addEventListener("touchcancel", this._onUserEnd, {
+      passive: true,
+    });
     this.element.addEventListener("scroll", this._onScroll, { passive: true });
     this._observeItems();
     this._sync();
@@ -63,14 +77,17 @@ export default class extends Controller {
         for (const entry of entries) {
           // Map intersectionRatio (0..1) to --in-view so the description
           // fades in proportionally as the card enters/leaves the row.
-          entry.target.style.setProperty("--in-view", entry.intersectionRatio.toFixed(3));
+          entry.target.style.setProperty(
+            "--in-view",
+            entry.intersectionRatio.toFixed(3),
+          );
         }
       },
       {
         root: this.element,
         // Many thresholds → smooth opacity ramp during horizontal scroll.
         threshold: Array.from({ length: 11 }, (_, i) => i / 10),
-      }
+      },
     );
     this.element.querySelectorAll(".project-thumbs__item").forEach((el) => {
       this._observer.observe(el);
@@ -119,7 +136,9 @@ export default class extends Controller {
   _wrap() {
     // Track contains 2 passes; once we've scrolled past 1/2 of its content
     // width, jump back by that distance to keep the loop seamless.
-    const track = this.hasTrackTarget ? this.trackTarget : this.element.firstElementChild;
+    const track = this.hasTrackTarget
+      ? this.trackTarget
+      : this.element.firstElementChild;
     if (!track) return;
     const half = track.scrollWidth / 2;
     if (half <= 0) return;

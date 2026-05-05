@@ -23,7 +23,7 @@
     }
 
     @media (max-width: 600px) {
-  top: -65%;
+      top: -65%;
     }
   }
 
@@ -39,7 +39,9 @@
     // Reach into the next section's "3. Earn prizes!" heading. The 14vw
     // term accounts for prizes' aspect-ratio box plus its title's offset
     // from the section top; tuned by eye against the rendered layout.
-    bottom: calc(-1 * (var(--space-m) + 9.3vw + 0.5 * clamp(54px, 4.3vw, 68px)));
+    bottom: calc(
+      -1 * (var(--space-m) + 9.3vw + 0.5 * clamp(54px, 4.3vw, 68px))
+    );
     right: 3.5vw;
     width: 28vw;
     pointer-events: none;

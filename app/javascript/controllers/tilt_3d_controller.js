@@ -44,11 +44,7 @@ export default class extends Controller {
       const dy = (clientY - cy) / (rect.height / 2);
 
       // Distance past the card's edge in half-card units (0 if inside).
-      const overshoot = Math.max(
-        0,
-        Math.abs(dx) - 1,
-        Math.abs(dy) - 1,
-      );
+      const overshoot = Math.max(0, Math.abs(dx) - 1, Math.abs(dy) - 1);
       const influence = Math.max(0, 1 - overshoot / this.falloffValue);
 
       // Clamp the rotation input so the cursor sliding past the corner

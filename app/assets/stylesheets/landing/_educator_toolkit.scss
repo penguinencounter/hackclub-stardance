@@ -49,7 +49,7 @@
   &__hero-patch-group {
     position: absolute;
     inset: 0;
-    transform: translateX(4px) translateY(-8px); 
+    transform: translateX(4px) translateY(-8px);
   }
 
   &__hero-patch-image {
@@ -399,7 +399,6 @@
     color: var(--color-yellow-200);
     white-space: nowrap;
   }
-
 }
 
 @keyframes educator-patch-float {

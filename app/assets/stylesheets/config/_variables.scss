@@ -23,10 +23,10 @@
   // Landing typography scale — five buckets every page-text element snaps to.
   // Each bucket is a single fluid clamp so a given role is consistent across
   // all viewports.
-  --font-display:  clamp(44px, 4.6vw, 96px); // hero title
-  --font-h2:       clamp(36px, 4.5vw, 58px); // section headings
-  --font-h3:       clamp(24px, 2.6vw, 36px); // card / subsection headings
-  --font-body:     19px;                     // default page text (fixed)
+  --font-display: clamp(44px, 4.6vw, 96px); // hero title
+  --font-h2: clamp(36px, 4.5vw, 58px); // section headings
+  --font-h3: clamp(24px, 2.6vw, 36px); // card / subsection headings
+  --font-body: 19px; // default page text (fixed)
   --font-subtitle: clamp(14px, 1.2vw, 20px); // small captions / labels
 
   // Standard body text colour for the dark landing pages — slightly translucent

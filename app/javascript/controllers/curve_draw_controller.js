@@ -30,7 +30,7 @@ export default class extends Controller {
       if (prev) {
         const prevBottom = prev.getBoundingClientRect().bottom;
         if (prevBottom > 0) {
-          console.log("i'm here")
+          console.log("i'm here");
           this.pathTarget.style.strokeDashoffset = this.totalLength;
           this._startBottom = null;
           return;
@@ -39,8 +39,12 @@ export default class extends Controller {
         if (this._startBottom == null) {
           this._startBottom = rect.bottom;
         }
-        const progress = Math.max(0, Math.min(1, 1 - rect.bottom / this._startBottom));
-        this.pathTarget.style.strokeDashoffset = this.totalLength * (1 - progress);
+        const progress = Math.max(
+          0,
+          Math.min(1, 1 - rect.bottom / this._startBottom),
+        );
+        this.pathTarget.style.strokeDashoffset =
+          this.totalLength * (1 - progress);
         return;
       }
     }

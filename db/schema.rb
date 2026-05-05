@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_30_165739) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_05_154457) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vector"
@@ -400,14 +400,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_165739) do
     t.index ["project_id"], name: "index_project_follows_on_project_id"
     t.index ["user_id", "project_id"], name: "index_project_follows_on_user_id_and_project_id", unique: true
     t.index ["user_id"], name: "index_project_follows_on_user_id"
-  end
-
-  create_table "project_ideas", force: :cascade do |t|
-    t.text "content", null: false
-    t.datetime "created_at", null: false
-    t.string "model", null: false
-    t.text "prompt", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "project_memberships", force: :cascade do |t|

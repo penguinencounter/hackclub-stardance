@@ -11,9 +11,3 @@
 user = User.find_or_create_by!(email: "kartikey@hackclub.com", slack_id: "U05F4B48GBF")
 user.make_super_admin!
 user.make_admin!
-
-# Load comprehensive development seed in development environments
-if Rails.env.development? && ENV.fetch("USE_BIG_SEED", false)
-  puts "Loading comprehensive development seed..."
-  load Rails.root.join('db', 'seeds', 'dev_full_seed.rb')
-end

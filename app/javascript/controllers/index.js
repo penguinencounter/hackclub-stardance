@@ -91,9 +91,6 @@ application.register("project-fire", ProjectFireController)
 import ProjectFormController from "./project_form_controller"
 application.register("project-form", ProjectFormController)
 
-import ProjectIdeasController from "./project_ideas_controller"
-application.register("project-ideas", ProjectIdeasController)
-
 import ProjectThumbsLoopController from "./project_thumbs_loop_controller"
 application.register("project-thumbs-loop", ProjectThumbsLoopController)
 

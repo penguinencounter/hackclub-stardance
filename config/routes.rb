@@ -297,9 +297,6 @@ Rails.application.routes.draw do
 
   get "queue", to: "queue#index"
 
-  # Project Ideas
-  post "project_ideas/random", to: "project_ideas#random", as: :random_project_ideas
-
   # Projects
   resources :projects, shallow: true do
     resources :memberships, only: [ :create, :destroy ], module: :projects

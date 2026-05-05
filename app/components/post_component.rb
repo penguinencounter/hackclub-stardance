@@ -5,12 +5,11 @@ class PostComponent < ViewComponent::Base
 
   attr_reader :post, :compact
 
-  def initialize(post:, current_user: nil, theme: nil, compact: false, lapse_badge: false, standalone: false, show_likes: true, show_comments: true, show_actions: true)
+  def initialize(post:, current_user: nil, theme: nil, compact: false, standalone: false, show_likes: true, show_comments: true, show_actions: true)
     @post = post
     @current_user = current_user
     @theme = theme
     @compact = compact
-    @lapse_badge = lapse_badge
     @standalone = standalone
     @show_likes = show_likes
     @show_comments = show_comments
@@ -122,10 +121,6 @@ class PostComponent < ViewComponent::Base
     postable.is_a?(Post::GitCommit)
   end
 
-  def show_lapse_badge?
-    devlog? && @lapse_badge
-  end
-
   def standalone?
     @standalone
   end
@@ -144,35 +139,6 @@ class PostComponent < ViewComponent::Base
 
   def show_interactions?
     devlog? && !compact? && (show_likes? || show_comments? || (show_actions? && (can_edit? || can_force_delete?)))
-  end
-
-  def lapse_frame_id
-    "lapse-timelapses-#{post.project.id}" if post.project.present?
-  end
-
-  def lapse_modal_id
-    "lapse-modal-#{post.project.id}" if post.project.present?
-  end
-
-  def lapse_timelapses_url
-    helpers.lapse_timelapses_project_path(post.project) if post.project.present?
-  end
-
-  def lapse_badge_data
-    if standalone?
-      {
-        controller: "lapse-modal",
-        "lapse-modal-frame-id-value": lapse_frame_id,
-        "lapse-modal-modal-id-value": lapse_modal_id,
-        "lapse-modal-url-value": lapse_timelapses_url
-      }
-    else
-      {
-        controller: "modal",
-        action: "click->modal#open",
-        "modal-target-value": lapse_modal_id
-      }
-    end
   end
 
   def author_activity

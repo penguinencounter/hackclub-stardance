@@ -74,8 +74,7 @@
           <% @posts.each do |post| %>
             <%= render PostComponent.new(
                   post: post,
-                  current_user: current_user,
-                  lapse_badge: @devlog_lapse_badges[post.postable_id]
+                  current_user: current_user
                 ) %>
           <% end %>
         </div>

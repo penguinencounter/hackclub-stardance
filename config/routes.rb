@@ -310,7 +310,6 @@ Rails.application.routes.draw do
     resource :ships, only: [ :new, :create ], module: :projects
     member do
       get :readme
-      get :lapse_timelapses
       post :mark_fire
       post :unmark_fire
       post :follow

@@ -22,9 +22,6 @@ application.register("curve-draw", CurveDrawController)
 import CustomsWarningController from "./customs_warning_controller"
 application.register("customs-warning", CustomsWarningController)
 
-import DevlogAttachmentSelectorController from "./devlog_attachment_selector_controller"
-application.register("devlog-attachment-selector", DevlogAttachmentSelectorController)
-
 import DialogueIterationController from "./dialogue_iteration_controller"
 application.register("dialogue-iteration", DialogueIterationController)
 
@@ -54,9 +51,6 @@ application.register("json-highlight", JsonHighlightController)
 
 import KitchenDialogueController from "./kitchen_dialogue_controller"
 application.register("kitchen-dialogue", KitchenDialogueController)
-
-import LapseModalController from "./lapse_modal_controller"
-application.register("lapse-modal", LapseModalController)
 
 import LazyLoadController from "./lazy_load_controller"
 application.register("lazy-load", LazyLoadController)

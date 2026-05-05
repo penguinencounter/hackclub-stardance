@@ -58,17 +58,6 @@
             <div class="post__duration"><%= duration_text %> logged</div>
           <% end %>
         </div>
-        <% if show_lapse_badge? %>
-          <%= tag.button type: "button", id: "devlog-lapse-badge-#{postable.id}",
-                class: "post__lapse-badge",
-                aria: { label: "Tracked with Lapse - Click to view timelapses" },
-                data: lapse_badge_data do %>
-            <%= helpers.inline_svg_tag "lapse.svg", class: "post__lapse-icon", aria: { hidden: true } %>
-          <% end %>
-          <%= helpers.turbo_frame_tag(lapse_frame_id) if standalone? %>
-        <% elsif devlog? %>
-          <%= helpers.turbo_frame_tag "devlog-lapse-badge-#{postable.id}" %>
-        <% end %>
       </header>
 
       <%= render "shared/inspector", record: postable %>
@@ -142,13 +131,7 @@
         <div class="post__body"><%= helpers.md postable.body %></div>
       <% end %>
 
-      <% if devlog? && postable.lapse_video_processing? %>
-        <div class="post__attachments">
-          <div class="post__processing-placeholder">
-            <p>🎬 Video processing — check back later!</p>
-          </div>
-        </div>
-      <% elsif attachments.any? %>
+      <% if attachments.any? %>
         <div class="post__attachments" data-controller="post-attachments">
           <div class="post__viewport">
             <button type="button" class="post__chevron post__chevron--prev" data-post-attachments-target="prevButton" data-action="post-attachments#prev" aria-label="Previous" hidden>

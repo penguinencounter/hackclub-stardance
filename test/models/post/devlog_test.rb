@@ -9,7 +9,6 @@
 #  duration_seconds                :integer
 #  hackatime_projects_key_snapshot :text
 #  hackatime_pulled_at             :datetime
-#  lapse_video_processing          :boolean          default(FALSE), not null
 #  likes_count                     :integer          default(0), not null
 #  synced_at                       :datetime
 #  tutorial                        :boolean          default(FALSE), not null
